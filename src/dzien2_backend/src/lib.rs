@@ -15,6 +15,7 @@ fn greet(name: String, surname: i8) -> String {
     format!("Hello, {} {}!", name, surname)
 }
 
+//update zeby zapisac na wszystkich komputerach
 #[ic_cdk::update]
 fn dodaj_wpis(wpis: String) {
     WPISY.with(|wpisy| {
@@ -22,5 +23,26 @@ fn dodaj_wpis(wpis: String) {
     });
 
     // Na WPISY uruchami metode with gdze rzecza ktora daje zmienna 
+
+    // // przykład
+    // let zmienna: String = String::from("Cześć");
+    // let zmienna2 = zmienna;
+    // let zmienna3: String = zmienna; // zmienna się zużyła
+
+    // let zmienna: String = String::from("Cześć");
+    // let zmienna2 = &zmienna; // pożyczmy zmienna2 dla zmienna
+    // let zmienna2 = &zmienna; // pożyczmy zmienna2 dla zmienna
+    // zmienna2.as_mut(); //
+    // let zmienna3: String = zmienna;
+
 }
+
+//query do odczytu
+#[ic_cdk::query]
+fn odczytaj_wpisy() -> Vec<String> {
+    WPISY.with(|wpisy| {
+        wpisy.borrow().clone() //borrow pozycza zmienna, clone klonuje
+    }) 
+}
+
 
