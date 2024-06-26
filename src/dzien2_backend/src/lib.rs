@@ -59,7 +59,7 @@ fn usun_wpis(id_wpisu: usize) {
 fn edytuj_wpis(id_wpisu: usize, nowy_wpis: String) {
     WPISY.with(|wpisy|{
         let mut binding = wpisy.borrow_mut();
-        let mut wpis = binding.get_mut(id_wpisu);
+        let wpis = binding.get_mut(id_wpisu);
         //get_mut pobranie zmiennej jako edytowalna
         let stary_wpis = wpis.unwrap();
         *stary_wpis = nowy_wpis;
